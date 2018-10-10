@@ -26,7 +26,6 @@ def add_result(label, incremental_time, total_time):
     global start_time
     global last_time
     global results
-
     
     result = {'label':label, 'increment':incremental_time, 'total time':total_time}
     results.append(result)
@@ -56,15 +55,18 @@ def save_results(filename = 'results.csv', test_self = True, unit='s'):
             f.write(result['label'] + ',' + str(result['increment']*factor) + ',' + str(result['total time']*factor) + '\n')
         if test_self:
             clear()
-            f.write('\n' + self_test())
+            f.write('\n' + self_test(unit=unit))
 
 
-def self_test(n = 10000):
+def self_test(n = 10000, unit='s'):
     global last_time
     global results
+    global UNITS
+
+    factor=UNITS[unit]
     
     for i in range(n):
         mark(i)
     total_time = last_time - start_time
-    return 'Benchmark Self Test\nTotal time for n=' + str(n) + ': ' + str(total_time) + '\nAverage mark time for n=' + str(n) + ': ' + str(total_time / n)
+    return 'Benchmark Self Test (units in ' + unit + ')\nTotal time for n=' + str(n) + ': ' + str(total_time*factor) + '\nAverage mark time for n=' + str(n) + ': ' + str((total_time*factor) / n)
     

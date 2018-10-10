@@ -7,4 +7,4 @@ for i in range(100):
     sqrt(i)
     ezb.mark(str(i))
 
-ezb.save_results()
+ezb.save_results(unit='us')
