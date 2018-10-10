@@ -1,4 +1,4 @@
-import ezbenchmark as ezb
+import EZ_Benchmark as ezb
 from math import sqrt
 
 
